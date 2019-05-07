@@ -13,14 +13,14 @@ class CreatePeliculasTable extends Migration
      */
     public function up()
     {
-        Schema::create('movies', function (Blueprint $table) {
+        Schema::create('peliculas', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->string('nombre');
 			$table->string('reparto');
 			$table->string('direccion');
 			$table->string('duracion');
 			$table->unsignedBigInteger('id_genero'); //Acá se declara el id de otra tabla como FK 
-			$table->foreign('id_genero')->references('id')->on('genero'); //Acá se referencia el id declarado y a que tabla pertenece
+			$table->foreign('id_genero')->references('id')->on('generos'); //Acá se referencia el id declarado y a que tabla pertenece
             $table->timestamps();
         });
     }

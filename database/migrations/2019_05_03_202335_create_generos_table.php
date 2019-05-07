@@ -22,8 +22,8 @@ class CreateGenerosTable extends Migration
             $table->bigIncrements('id');
 			$table->string('genero');
             $table->timestamps();
-       
-
+	    });
+    }
     /**
      * Reverse the migrations.
      *
