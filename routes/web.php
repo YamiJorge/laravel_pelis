@@ -58,3 +58,4 @@ Route::get('edad/{edad}', function ($edad) {
 Route::get('/','ControladorFront@index');
 Route::get('contacto','ControladorFront@contacto');
 Route::get('reviews','ControladorFront@reviews');
+Route::get('admin','ControladorFront@admin');
