@@ -6,14 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/metisMenu.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/sb-admin-2.css')}}">
-    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css">
-
+    <title></title>
+    {!!Html::style('css/bootstrap.min.css')!!}
+    {!!Html::style('css/metisMenu.min.css')!!}
+    {!!Html::style('css/sb-admin-2.css')!!}
+    {!!Html::style('css/font-awesome.min.css')!!}
 </head>
 
 <body>
@@ -39,9 +36,7 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Ajustes</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -95,17 +90,16 @@
     </nav>
 
     <div id="page-wrapper">
-
+        @yield('content')
     </div>
 
 </div>
 
 
-
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="{{asset('js/metisMenu.min.js')}}"></script>
-<script src="{{asset('js/sb-admin-2.js')}}"></script>
+{!!Html::script('js/jquery.min.js')!!}
+{!!Html::script('js/bootstrap.min.js')!!}
+{!!Html::script('js/metisMenu.min.js')!!}
+{!!Html::script('js/sb-admin-2.js')!!}
 
 </body>
 
