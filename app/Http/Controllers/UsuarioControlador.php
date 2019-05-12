@@ -13,7 +13,8 @@ class UsuarioControlador extends Controller
      */
     public function index()
     {
-        //
+        $users = \Cine\User::all();//Acá tomará como valir de $users los datos de todos los usuarios registrados en la bd
+        return view('usuario.index',compact('users'));//Acá se desplegarán los usuarios existentes.
     }
 
     /**
@@ -40,7 +41,8 @@ class UsuarioControlador extends Controller
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
         ]);
-        return "Usuario registrado";
+        return redirect('/usuario')->with('message','store');/*Si el usuario es creado, se redirigirá
+        automáticamente al Index*/
     }
 
     /**

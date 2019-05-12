@@ -11,7 +11,7 @@ Finalmente, en el mismo archivo, agrega en Aliases:
 
 Para crear formularios, se usa la siguiente sintaxis:
 
-{!! Form::open(['route'=>'objeto.store', 'method'=>'METODP', 'files' => true, 'role' => 'form']) !!}
+{!! Form::open(['route'=>'objeto.store', 'method'=>'METODO', 'files' => true, 'role' => 'form']) !!}
     // Acá coloca los elementos del Formulario
 {!! Form::close() !!}
 
