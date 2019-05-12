@@ -3,6 +3,9 @@
 namespace Cine\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Cine\User; //Acá hacemos referencia directa al usuario
+use Illuminate\Support\Facades\Redirect;
 
 class UsuarioControlador extends Controller
 {
@@ -13,7 +16,7 @@ class UsuarioControlador extends Controller
      */
     public function index()
     {
-        $users = \Cine\User::all();//Acá tomará como valir de $users los datos de todos los usuarios registrados en la bd
+        $users = User::all();//Acá tomará como valor de $users los datos de todos los usuarios registrados en la bd
         return view('usuario.index',compact('users'));//Acá se desplegarán los usuarios existentes.
     }
 
@@ -35,11 +38,11 @@ class UsuarioControlador extends Controller
      */
     public function store(Request $request)
     {
-        \Cine\User::create([ /*En este método, vamos a crear el usuario en base a las columnas declaradas
+        User::create([ /*En este método, vamos a crear el usuario en base a las columnas declaradas
         que en este caso serían el nombre, email y contraseña.*/
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => bcrypt($request['password']),
+            'password' => ($request['password']),
         ]);
         return redirect('/usuario')->with('message','store');/*Si el usuario es creado, se redirigirá
         automáticamente al Index*/
@@ -64,7 +67,8 @@ class UsuarioControlador extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('usuario.edit',['user'=>$user]);
     }
 
     /**
@@ -74,9 +78,15 @@ class UsuarioControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)/*En este método, se actualizará el usuario y posteriormente
+    redirigirá al index*/
     {
-        //
+        $user = User::find($id);
+        $user->fill($request->all());
+        $user->save();
+        Session::flash('message','Usuario Actualizado Correctamente');/*Esta es la variable Session declarada
+        en el index.blade.php de la carpeta Usuario*/
+        return Redirect::to('/usuario');
     }
 
     /**
