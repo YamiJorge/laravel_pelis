@@ -85,7 +85,7 @@ class UsuarioControlador extends Controller
         $user->fill($request->all());
         $user->save();
         Session::flash('message','Usuario Actualizado Correctamente');/*Esta es la variable Session declarada
-        en el index.blade.php de la carpeta Usuario*/
+        en el index.blade.php de la carpeta Usuario. Acá indicará que el usuario ha sido modificado.*/
         return Redirect::to('/usuario');
     }
 
@@ -97,6 +97,10 @@ class UsuarioControlador extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id); /*En este método, se eliminará el usuario y posteriormente
+        redirigirá al index*/
+        Session::flash('message','Usuario Eliminado Correctamente');/*Esta es la variable Session declarada
+        en el index.blade.php de la carpeta Usuario. Acá indicará que el usuario ha sido eliminado.*/
+        return Redirect::to('/usuario');
     }
 }
