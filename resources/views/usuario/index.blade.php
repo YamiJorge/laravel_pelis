@@ -24,4 +24,6 @@ tiene un mensaje, lo obtendremos y lo mostraremos--}}
             </tbody>
         @endforeach
     </table>
+    {!!$users->render()!!} {{--Acá vamos a renderear los elementos que no salgan enlistados por las restricciones
+    impuestas en la paginación--}}
 @endsection

@@ -18,7 +18,7 @@ class UsuarioControlador extends Controller
      */
     public function index()
     {
-        $users = User::all();//Acá tomará como valor de $users los datos de todos los usuarios registrados en la bd
+        $users = User::paginate(2);//Con la función "Paginate" solo mostraremos la cantidad de elementos indicada.
         return view('usuario.index',compact('users'));//Acá se desplegarán los usuarios existentes.
     }
 
