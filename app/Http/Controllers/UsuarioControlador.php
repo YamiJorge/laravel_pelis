@@ -2,6 +2,8 @@
 
 namespace Cine\Http\Controllers;
 
+use Cine\Http\Requests\ActualizarUsuarioRequest;
+use Cine\Http\Requests\CrearUsuarioRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Cine\User; //Acá hacemos referencia directa al usuario
@@ -36,7 +38,7 @@ class UsuarioControlador extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CrearUsuarioRequest $request)//En este caso, se hace referencia al Request de crear usuario.
     {
         User::create([ /*En este método, vamos a crear el usuario en base a las columnas declaradas
         que en este caso serían el nombre, email y contraseña.*/
@@ -78,7 +80,7 @@ class UsuarioControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)/*En este método, se actualizará el usuario y posteriormente
+    public function update(ActualizarUsuarioRequest $request, $id)/*En este método, se actualizará el usuario y posteriormente
     redirigirá al index*/
     {
         $user = User::find($id);

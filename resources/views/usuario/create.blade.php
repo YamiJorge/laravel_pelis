@@ -16,19 +16,9 @@ Para crear formularios, se usa la siguiente sintaxis:
 {!! Form::close() !!}
 
 --}}
+@include('alerts.request'){{--Acá se hace un include a la ruta views/alerts/request.blade.php --}}
     {!!Form::open(['route'=>'usuario.store', 'method'=>'POST', 'files' => true, 'role' => 'form']) !!}
-    <div class="form-group">
-        {!!Form::label('nombre','Nombre:')!!}
-        {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
-    </div>
-    <div class="form-group">
-        {!!Form::label('email','Correo:')!!}
-        {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'Ingresa el Email del usuario'])!!}
-    </div>
-    <div class="form-group">
-        {!!Form::label('password','Contraseña:')!!}
-        {!!Form::password('password',['class'=>'form-control','placeholder'=>'Ingresa la contrseña del usuario'])!!}
-    </div>
+    @include('usuario.forms.usr'){{--Acá hacemos include a (usuario/forms/usr.blade.php para llamar al formulario--}}
     {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
     {!!Form::close()!!}
 @endsection

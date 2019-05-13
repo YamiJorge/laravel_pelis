@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+    @include('alerts.request')
     {!!Form::model($user,['route'=>['usuario.update',$user],'method'=>'PUT'])!!}
     @include('usuario.forms.usr'){{--Acá incluimos el formulario del archivo usr.blade.php de
     la carpeta usuario/forms--}}
