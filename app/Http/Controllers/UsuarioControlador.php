@@ -99,8 +99,8 @@ class UsuarioControlador extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id); /*En este método, se eliminará el usuario y posteriormente
-        redirigirá al index*/
+        $user = User::find($id);//En vez de usar Destroy, buscaremos el usuario según el ID
+        $user->delete();//y ahora se hará referencia al método Delete
         Session::flash('message','Usuario Eliminado Correctamente');/*Esta es la variable Session declarada
         en el index.blade.php de la carpeta Usuario. Acá indicará que el usuario ha sido eliminado.*/
         return Redirect::to('/usuario');
