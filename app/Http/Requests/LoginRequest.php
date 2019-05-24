@@ -1,12 +1,10 @@
 <?php
 
-
-
 namespace Cine\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActualizarUsuarioRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,7 +15,6 @@ class ActualizarUsuarioRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,8 +23,8 @@ class ActualizarUsuarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
+            'password'=> 'required',
+            'email' => 'required|email',
         ];
     }
 }

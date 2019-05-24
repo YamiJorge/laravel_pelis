@@ -1,16 +1,13 @@
 <?php
 
 namespace Cine\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Cine\Http\Requests;
 use Cine\Http\Controllers\Controller;
-use Cine\Genero;
+use Mail;
 use Session;
 use Redirect;
-use Cine\Pelicula;
-
-class PeliControlador extends Controller
+class MailControlador extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +16,7 @@ class PeliControlador extends Controller
      */
     public function index()
     {
-        $peliculas = Pelicula::Peliculas();
-        return view('pelicula.index',compact('peliculas'));
+        //
     }
     /**
      * Show the form for creating a new resource.
@@ -29,8 +25,7 @@ class PeliControlador extends Controller
      */
     public function create()
     {
-        $generos = Genero::pluck('genero', 'id');
-        return view('pelicula.create',compact('generos'));
+        //
     }
     /**
      * Store a newly created resource in storage.
@@ -38,10 +33,16 @@ class PeliControlador extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)/*Esta función enviará un mensaje a la vista emails/contact, el cual
+    será enviado al correo de contacto definido.
+    Luego redirigirá a la ventana contacto*/
     {
-        Pelicula::create($request->all());
-        return redirect('/pelicula')->with('message','Película creada exitosamente');
+        Mail::send('emails.contact',$request->all(), function($msj){
+            $msj->subject('Correo de Contacto');
+            $msj->to('darkmagician.jorge@gmail.com');
+        });
+        Session::flash('message','Mensaje enviado correctamente');
+        return Redirect::to('contacto');
     }
     /**
      * Display the specified resource.
@@ -61,9 +62,7 @@ class PeliControlador extends Controller
      */
     public function edit($id)
     {
-        $pelicula = Pelicula::find($id);
-        $generos = Genero::pluck('genero', 'id');
-        return view('pelicula.edit',['pelicula'=>$pelicula,'generos'=>$generos]);
+        //
     }
     /**
      * Update the specified resource in storage.
@@ -74,11 +73,7 @@ class PeliControlador extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pelicula = Pelicula::find($id);
-        $pelicula->fill($request->all());
-        $pelicula->save();
-        Session::flash('message','Pelicula Editada Correctamente');
-        return Redirect::to('/pelicula');
+        //
     }
     /**
      * Remove the specified resource from storage.
@@ -88,10 +83,6 @@ class PeliControlador extends Controller
      */
     public function destroy($id)
     {
-        $pelicula = Pelicula::find($id);//En vez de usar Destroy, buscaremos el usuario según el ID
-        \Storage::delete($pelicula->path);
-        $pelicula->delete();//y ahora se hará referencia al método Delete
-        Session::flash('message','Película Eliminada Correctamente');
-        return Redirect::to('/pelicula');
+        //
     }
 }

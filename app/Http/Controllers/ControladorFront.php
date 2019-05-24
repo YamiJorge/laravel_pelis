@@ -2,10 +2,15 @@
 
 namespace Cine\Http\Controllers;
 
+use Cine\Pelicula;
 use Illuminate\Http\Request;
 
 class ControladorFront extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth',['only' => 'admin']);/*Este middleware sirve para dar acceso del
+    admin solo a usuarios logueados*/
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +26,9 @@ class ControladorFront extends Controller
         return view('contacto');
     }
 
-    public function reviews()
-    {
-        return view('reviews');
+    public function reviews(){
+        $peliculas = Pelicula::Peliculas();
+        return view('reviews',compact('peliculas'));
     }
 
     public function admin()

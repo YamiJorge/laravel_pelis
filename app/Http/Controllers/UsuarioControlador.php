@@ -11,16 +11,27 @@ use Illuminate\Support\Facades\Redirect;
 
 class UsuarioControlador extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');/*Este middleware sirve para dar acceso del
+    admin solo a usuarios logueados*/
+        $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index(Request $request)
     {
         $users = User::paginate(2);//Con la función "Paginate" solo mostraremos la cantidad de elementos indicada.
+        if($request->ajax()){/*Si la petición se hace mediante AJAX, se enviará una respuesta de tipo JSON a
+        la vista usuario/users.blade*/
+            return response()->json(view('usuario.users',compact('users'))->render());
+        }
         return view('usuario.index',compact('users'));//Acá se desplegarán los usuarios existentes.
     }
+
 
     /**
      * Show the form for creating a new resource.

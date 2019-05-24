@@ -45,7 +45,8 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => public_path('peliculas'), /*Acá cambiamos la ruta de almacenamiento local.
+        la definimos como "public path" (en la carpeta "public") en una subcarpeta llamada "peliculas".*/
         ],
 
         'public' => [

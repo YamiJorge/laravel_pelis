@@ -61,3 +61,17 @@ Route::get('reviews','ControladorFront@reviews');
 Route::get('admin','ControladorFront@admin');
 
 Route::resource('usuario','UsuarioControlador');
+
+Route::resource('genero','GeneroControlador');
+
+Route::resource('pelicula','PeliControlador');
+
+Route::resource('mail','MailControlador');
+
+Route::resource('log','LoginControlador');
+
+Route::get('logout','LoginControlador@logout');
+
+Route::get('/', 'ControladorFront@index')->name('inicio');
+
+Route::get('generos','GeneroControlador@listing');

@@ -1,12 +1,10 @@
 <?php
 
-
-
 namespace Cine\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActualizarUsuarioRequest extends FormRequest
+class GeneroRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +24,7 @@ class ActualizarUsuarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
+            'genero' => 'required',
         ];
     }
 }
